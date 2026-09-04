@@ -1,0 +1,11 @@
+[
+  {
+    "id": "mexico-inegi-2020",
+    "title": "Mexico · INEGI 2020",
+    "country": "Mexico",
+    "year": 2020,
+    "source": "INEGI 2020",
+    "file": "/data/mexico-inegi-2020.csv",
+    "description": "Every place in the latest Mexico dataset, mapped from the 2020 census release. Search, filter, and click a dot to inspect it."
+  }
+]
