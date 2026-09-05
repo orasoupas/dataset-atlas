@@ -301,7 +301,7 @@ export default function Home() {
         context.setTransform(ratio, 0, 0, ratio, 0, 0);
         context.clearRect(0, 0, size.x, size.y);
         if (!dotRenderer) {
-          context.fillStyle = 'rgba(213, 66, 38, .6)';
+          context.fillStyle = 'rgba(218, 107, 103, .6)';
           context.strokeStyle = 'rgba(0, 0, 0, .92)';
           context.lineWidth = .4;
           for (const point of drawPoints) {
@@ -516,7 +516,7 @@ export default function Home() {
     <main className="app-shell">
       <header className="topbar">
         <a className="brand" href="https://github.com/orasoupas" target="_blank" rel="noreferrer" aria-label="orasoupas on GitHub">
-          <Image className="brand-mark" src={`${BASE_PATH}/atlas-icon.png`} width={36} height={36} alt="" priority /><span><strong>Dataset Atlas</strong></span>
+          <Image className="brand-mark" src={`${BASE_PATH}/atlas-icon.png`} width={36} height={36} alt="" priority /><span className="brand-title">Dataset Atlas</span>
         </a>
         <div className="dataset-picker"><label htmlFor="dataset">Dataset</label><select id="dataset" value={activeDatasetId} onChange={changeDataset}><option value="all">All countries (may run slowly)</option>{selectorDatasets.map((d) => <option key={d.id} value={d.id}>{d.country} · {d.sourceShort} · {d.year} {d.releaseType}{d.performanceNote ? ` (${d.performanceNote})` : ''}</option>)}</select></div>
       </header>

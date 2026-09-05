@@ -38,6 +38,7 @@ button, select { cursor: pointer; }
 .brand strong, .brand small { display: block; line-height: 1; }
 .brand strong { font-size: 16px; letter-spacing: -.02em; }
 .brand small { margin-top: 5px; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.brand-title { color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .12em; line-height: 1; text-transform: uppercase; }
 
 .dataset-picker { display: flex; align-items: center; gap: 12px; }
 .dataset-picker label { color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
