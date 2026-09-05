@@ -335,7 +335,7 @@ export default function Home() {
             context.lineWidth = 3.5;
             context.strokeStyle = '#fff';
             context.strokeText(text, x, point.y);
-            context.fillStyle = isSelected ? '#d54226' : '#000';
+            context.fillStyle = isSelected ? '#da6b67' : '#000';
             context.fillText(text, x, point.y);
             occupied.push(box);
             labelCount += 1;
