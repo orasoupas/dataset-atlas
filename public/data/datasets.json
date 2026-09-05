@@ -4,8 +4,21 @@
     "title": "Mexico · INEGI 2020",
     "country": "Mexico",
     "year": 2020,
-    "source": "INEGI 2020",
-    "file": "/data/mexico-inegi-2020.csv",
+    "source": "INEGI",
+    "sourceShort": "INEGI",
+    "subdivisionLabel": "State",
+    "file": "/data/mexico.csv",
     "description": "Every place in the latest Mexico dataset, mapped from the 2020 census release. Search, filter, and click a dot to inspect it."
+  },
+  {
+    "id": "syria-2004",
+    "title": "Syria · CBS, Syria 2004",
+    "country": "Syria",
+    "year": 2004,
+    "source": "Central Bureau of Statistics, Syrian Arab Republic",
+    "sourceShort": "CBS, Syria",
+    "subdivisionLabel": "Governorate",
+    "file": "/data/syria.csv",
+    "description": "Cities and places from Syria's 2004 population data, mapped for exploration and dataset review."
   }
 ]
