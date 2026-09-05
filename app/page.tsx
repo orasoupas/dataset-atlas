@@ -508,15 +508,15 @@ export default function Home() {
   const tableEnd = Math.min(tablePlaces.length, Math.ceil((tableScrollTop + tableViewportHeight) / TABLE_ROW_HEIGHT) + TABLE_OVERSCAN);
   const visibleTablePlaces = tablePlaces.slice(tableStart, tableEnd);
   const years = allCountries ? [...new Set(datasets.map((dataset) => dataset.year))].sort((a, b) => b - a).join(', ') : String(activeDataset?.year ?? '');
-  const countryTitle = allCountries ? 'All countries' : (activeDataset?.country ?? 'CityQuiz Dataset Atlas');
+  const countryTitle = allCountries ? 'All countries' : (activeDataset?.country ?? 'Dataset Atlas');
   const releaseLabel = activeDataset ? `${activeDataset.year} ${activeDataset.releaseType}` : '';
   const subdivisionHeading = allCountries ? 'Country / subdivision' : (activeDataset?.subdivisionLabel ?? 'Subdivision');
 
   return (
     <main className="app-shell">
       <header className="topbar">
-        <a className="brand" href="https://cityquiz.io" target="_blank" rel="noreferrer" aria-label="CityQuiz.io">
-          <Image className="brand-mark" src={`${BASE_PATH}/cityquiz.png`} width={36} height={36} alt="" priority /><span><strong>CityQuiz</strong><small>Dataset Atlas</small></span>
+        <a className="brand" href="https://github.com/orasoupas" target="_blank" rel="noreferrer" aria-label="orasoupas on GitHub">
+          <Image className="brand-mark" src={`${BASE_PATH}/atlas-icon.png`} width={36} height={36} alt="" priority /><span><strong>Dataset Atlas</strong></span>
         </a>
         <div className="dataset-picker"><label htmlFor="dataset">Dataset</label><select id="dataset" value={activeDatasetId} onChange={changeDataset}><option value="all">All countries (may run slowly)</option>{selectorDatasets.map((d) => <option key={d.id} value={d.id}>{d.country} · {d.sourceShort} · {d.year} {d.releaseType}{d.performanceNote ? ` (${d.performanceNote})` : ''}</option>)}</select></div>
       </header>
