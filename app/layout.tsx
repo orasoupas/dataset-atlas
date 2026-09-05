@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   icons: { icon: '/cityquiz-atlas/cityquiz.png' },
   title: 'CityQuiz Dataset Atlas',
   description: 'Explore the population datasets used by CityQuiz.',
-  openGraph: { title: 'CityQuiz Dataset Atlas', description: 'Explore the population datasets used by CityQuiz.', images: [{ url: '/og.png', width: 1729, height: 910, alt: 'CityQuiz Dataset Atlas map' }] },
-  twitter: { card: 'summary_large_image', title: 'CityQuiz Dataset Atlas', description: 'Explore the population datasets used by CityQuiz.', images: ['/og.png'] },
+  openGraph: { title: 'CityQuiz Dataset Atlas', description: 'Explore the population datasets used by CityQuiz.' },
+  twitter: { card: 'summary', title: 'CityQuiz Dataset Atlas', description: 'Explore the population datasets used by CityQuiz.' },
 };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { return <html lang="en"><body className={robotoCondensed.variable}>{children}</body></html>; }
