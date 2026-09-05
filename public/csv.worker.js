@@ -1,4 +1,4 @@
-importScripts('/vendor/papaparse.min.js');
+importScripts(new URL('./vendor/papaparse.min.js', self.location.href).href);
 
 const coordinate = (value) => {
   if (value === '' || value === null || value === undefined) return null;

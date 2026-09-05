@@ -25,4 +25,4 @@ The CSV should contain `code`, `name`, `state`, `country`, `latitude`, `longitud
 
 ## Deployment
 
-The site is deployed to [datasets.cityquiz.io](https://datasets.cityquiz.io) through the workflow in `.github/workflows/deploy-pages.yml`.
+The site is deployed to [orasoupas.github.io/cityquiz-atlas](https://orasoupas.github.io/cityquiz-atlas/) through the workflow in `.github/workflows/deploy-pages.yml`.

@@ -7,7 +7,7 @@
     "source": "INEGI",
     "sourceShort": "INEGI",
     "subdivisionLabel": "State",
-    "file": "/data/mexico.csv"
+    "file": "data/mexico.csv"
   },
   {
     "id": "syria-2004",
@@ -17,7 +17,7 @@
     "source": "Central Bureau of Statistics, Syrian Arab Republic",
     "sourceShort": "CBS, Syria",
     "subdivisionLabel": "Governorate",
-    "file": "/data/syria.csv"
+    "file": "data/syria.csv"
   },
   {
     "id": "india-censusindia-2011",
@@ -28,6 +28,6 @@
     "sourceShort": "Census India",
     "subdivisionLabel": "State/territory",
     "performanceNote": "may run slowly",
-    "file": "/data/india.csv"
+    "file": "data/india.csv"
   }
 ]

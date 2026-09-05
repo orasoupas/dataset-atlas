@@ -15,6 +15,7 @@ const DOT_GROWTH_START_ZOOM = 15;
 const NODE_RADIUS = 3;
 const POPULATION_RADIUS_SCALE = 0.006;
 const MAX_RENDERED_POINTS = 25000;
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 const baseDotRadius = (population: number, minimumRadius = NODE_RADIUS) => {
   const safePopulation = Number.isFinite(population) ? Math.max(population, 0) : 0;
   return minimumRadius + POPULATION_RADIUS_SCALE * Math.sqrt(safePopulation);
@@ -189,7 +190,7 @@ export default function Home() {
   const selectorDatasets = useMemo(() => [...datasets].sort((a, b) => a.country.localeCompare(b.country)), [datasets]);
 
   useEffect(() => {
-    fetch('/data/datasets.json').then((r) => r.json() as Promise<Dataset[]>).then(async (items) => {
+    fetch(`${BASE_PATH}/data/datasets.json`).then((r) => r.json() as Promise<Dataset[]>).then(async (items) => {
       const available = (await Promise.all(items.map(async (dataset) => {
         const response = await fetch(dataset.file, { method: 'HEAD' });
         return response.ok ? dataset : null;
@@ -204,7 +205,7 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setLoading(true); setError(''); setSelected(null);
     const targets = allCountries ? datasets : datasets.filter((dataset) => dataset.id === activeDatasetId);
-    const worker = new Worker('/csv.worker.js');
+    const worker = new Worker(`${BASE_PATH}/csv.worker.js`);
     worker.onmessage = (event: MessageEvent<{ places?: Place[]; error?: string }>) => {
       if (event.data.error) {
         setError(event.data.error); setLoading(false); return;
@@ -515,7 +516,7 @@ export default function Home() {
     <main className="app-shell">
       <header className="topbar">
         <a className="brand" href="https://cityquiz.io" target="_blank" rel="noreferrer" aria-label="CityQuiz.io">
-          <Image className="brand-mark" src="/cityquiz.png" width={36} height={36} alt="" priority /><span><strong>CityQuiz</strong><small>Dataset Atlas</small></span>
+          <Image className="brand-mark" src={`${BASE_PATH}/cityquiz.png`} width={36} height={36} alt="" priority /><span><strong>CityQuiz</strong><small>Dataset Atlas</small></span>
         </a>
         <div className="dataset-picker"><label htmlFor="dataset">Dataset</label><select id="dataset" value={activeDatasetId} onChange={changeDataset}><option value="all">All countries (may run slowly)</option>{selectorDatasets.map((d) => <option key={d.id} value={d.id}>{d.country} · {d.sourceShort} · {d.year} {d.releaseType}{d.performanceNote ? ` (${d.performanceNote})` : ''}</option>)}</select></div>
       </header>
