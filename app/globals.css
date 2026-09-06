@@ -109,7 +109,10 @@ button, select { cursor: pointer; }
 .filter-heading { display: flex; align-items: center; justify-content: space-between; }
 .filter-block label { color: #555; font-size: 11px; font-weight: 700; }
 .filter-block strong { color: #000; font-size: 11px; font-weight: 700; }
-.filter-block input { width: 100%; margin: 12px 0 2px; accent-color: #000; }
+.filter-block input[type="range"] { width: 100%; margin: 12px 0 2px; accent-color: #000; }
+.population-value { width: 104px; margin: 0; padding: 2px 4px; border: 1px solid transparent; background: transparent; color: #000; font-size: 11px; font-weight: 700; text-align: right; }
+.population-value:hover { border-color: #aaa; }
+.population-value:focus { border-color: var(--ink); background: #fff; outline: 0; }
 .range-labels { display: flex; justify-content: space-between; color: #777; font-size: 9px; }
 
 .stats-grid { display: grid; grid-template-columns: 1fr 1fr; margin-top: 15px; border: 1px solid var(--ink); }
