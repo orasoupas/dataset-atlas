@@ -193,10 +193,13 @@ export default function Home() {
   const selectorDatasets = useMemo(() => [...datasets].sort((a, b) => a.country.localeCompare(b.country)), [datasets]);
 
   useEffect(() => {
-    fetch(`${BASE_PATH}/data/datasets.json`).then((r) => r.json() as Promise<Dataset[]>).then(async (items) => {
+    const cacheVersion = Date.now();
+    fetch(`${BASE_PATH}/data/datasets.json?v=${cacheVersion}`, { cache: 'no-store' }).then((r) => r.json() as Promise<Dataset[]>).then(async (items) => {
       const available = (await Promise.all(items.map(async (dataset) => {
-        const response = await fetch(dataset.file, { method: 'HEAD' });
-        return response.ok ? dataset : null;
+        const separator = dataset.file.includes('?') ? '&' : '?';
+        const versionedDataset = { ...dataset, file: `${dataset.file}${separator}v=${cacheVersion}` };
+        const response = await fetch(versionedDataset.file, { method: 'HEAD', cache: 'no-store' });
+        return response.ok ? versionedDataset : null;
       }))).filter((dataset): dataset is Dataset => dataset !== null);
       setDatasets(available); setActiveDatasetId(available[0]?.id ?? '');
     }).catch(() => setError('The dataset catalog could not be loaded.'));
