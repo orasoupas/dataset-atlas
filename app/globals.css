@@ -110,9 +110,10 @@ button, select { cursor: pointer; }
 .filter-block label { color: #555; font-size: 11px; font-weight: 700; }
 .filter-block strong { color: #000; font-size: 11px; font-weight: 700; }
 .filter-block input[type="range"] { width: 100%; margin: 12px 0 2px; accent-color: #000; }
-.population-value { width: 104px; margin: 0; padding: 2px 4px; border: 1px solid transparent; background: transparent; color: #000; font-size: 11px; font-weight: 700; text-align: right; }
-.population-value:hover { border-color: #aaa; }
-.population-value:focus { border-color: var(--ink); background: #fff; outline: 0; }
+.population-value { width: 88px; margin: 0; padding: 0; border: 0; border-bottom: 1px solid transparent; appearance: textfield; background: transparent; color: #000; font-size: 11px; font-weight: 700; line-height: normal; text-align: right; }
+.population-value::-webkit-inner-spin-button, .population-value::-webkit-outer-spin-button { margin: 0; appearance: none; }
+.population-value:hover { border-bottom-color: #aaa; }
+.population-value:focus { border-bottom-color: var(--ink); outline: 0; }
 .range-labels { display: flex; justify-content: space-between; color: #777; font-size: 9px; }
 
 .stats-grid { display: grid; grid-template-columns: 1fr 1fr; margin-top: 15px; border: 1px solid var(--ink); }

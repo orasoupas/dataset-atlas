@@ -180,6 +180,7 @@ export default function Home() {
   const [selected, setSelected] = useState<Place | null>(null);
   const [query, setQuery] = useState('');
   const [minPopulation, setMinPopulation] = useState(0);
+  const [populationInput, setPopulationInput] = useState('0');
   const [loading, setLoading] = useState(true);
   const [panelOpen, setPanelOpen] = useState(true);
   const [tableOpen, setTableOpen] = useState(false);
@@ -548,8 +549,8 @@ export default function Home() {
           <div className="search-wrap"><span aria-hidden="true">⌕</span><input aria-label="Search places" placeholder="Search a city or subdivision" value={query} onChange={(e) => setQuery(e.target.value)} />{query && <button onClick={() => setQuery('')} aria-label="Clear search">×</button>}</div>
           {featuredMatches.length > 0 && <div className="results">{featuredMatches.map((p) => <button key={p.code} onClick={() => locate(p)} disabled={!hasCoordinates(p)}><span>{p.name}<small>{p.state}{!hasCoordinates(p) ? ' · Not mapped' : ''}</small></span><strong>{format.format(p.population)}</strong></button>)}</div>}
           <div className="filter-block">
-            <div className="filter-heading"><label htmlFor="population">Minimum population</label><input className="population-value" type="number" aria-label="Minimum population value" min="0" step="1" value={minPopulation} onChange={(e) => setMinPopulation(Number.isFinite(e.target.valueAsNumber) ? Math.max(0, Math.floor(e.target.valueAsNumber)) : 0)} /></div>
-            <input id="population" type="range" min="0" max="1000000" step="1" value={Math.min(minPopulation, 1000000)} onChange={(e) => setMinPopulation(Number(e.target.value))} />
+            <div className="filter-heading"><label htmlFor="population">Minimum population</label><input className="population-value" type="number" inputMode="numeric" aria-label="Minimum population value" min="0" step="1" value={populationInput} onChange={(e) => { const raw = e.target.value; setPopulationInput(raw); const value = Number(raw); if (raw !== '' && Number.isFinite(value)) setMinPopulation(Math.max(0, Math.floor(value))); }} onBlur={() => { const value = Math.max(0, Math.floor(Number(populationInput) || 0)); setMinPopulation(value); setPopulationInput(String(value)); }} /></div>
+            <input id="population" type="range" min="0" max="1000000" step="1" value={Math.min(minPopulation, 1000000)} onChange={(e) => { const value = Number(e.target.value); setMinPopulation(value); setPopulationInput(String(value)); }} />
             <div className="range-labels"><span>All places</span><span>1M+</span></div>
           </div>
           <div className="stats-grid"><div><strong>{format.format(mappedPlaces.length)}</strong><span>Shown on map</span></div><div><strong>{populationTotal >= 1e6 ? `${(populationTotal / 1e6).toFixed(1)}M` : format.format(populationTotal)}</strong><span>Total population</span></div></div>
