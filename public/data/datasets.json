@@ -6,7 +6,7 @@
     "releaseType": "census",
     "source": "INEGI",
     "sourceShort": "INEGI",
-    "subdivisionLabel": "State",
+    "subdivisionLabel": "States",
     "file": "data/mexico.csv"
   },
   {
@@ -29,5 +29,15 @@
     "subdivisionLabel": "State/territory",
     "performanceNote": "may run slowly",
     "file": "data/india.csv"
+  },
+  {
+    "id": "brazil-ibge-2022",
+    "country": "Brazil",
+    "year": 2022,
+    "releaseType": "census",
+    "source": "IBGE",
+    "sourceShort": "IBGE",
+    "subdivisionLabel": "States",
+    "file": "data/brazil.csv"
   }
 ]

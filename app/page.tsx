@@ -10,7 +10,6 @@ type Place = { code: string; name: string; state: string; country: string; latit
 const format = new Intl.NumberFormat('en-US');
 const TABLE_ROW_HEIGHT = 50;
 const TABLE_OVERSCAN = 8;
-const MIN_SELECT_ZOOM = 5;
 const DOT_GROWTH_START_ZOOM = 15;
 const NODE_RADIUS = 3;
 const POPULATION_RADIUS_SCALE = 0.006;
@@ -45,6 +44,10 @@ const normalizeSearchText = (value: string) => value
   .replace(/\s+/g, ' ')
   .trim()
   .toLocaleLowerCase();
+const csvCell = (value: CsvValue) => {
+  const text = value === null || value === undefined ? '' : String(value);
+  return /[",\r\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
+};
 
 function createDotRenderer(element: HTMLCanvasElement) {
   const gl = element.getContext('webgl', { alpha: true, antialias: true });
@@ -91,7 +94,7 @@ function createDotRenderer(element: HTMLCanvasElement) {
       float outer_alpha = 1.0 - smoothstep(outer_radius - antialias, outer_radius, distance_in_pixels);
       if (outer_alpha <= 0.0) discard;
       float border_mix = smoothstep(fill_radius - antialias * 0.5, fill_radius + antialias * 0.5, distance_in_pixels);
-      vec4 fill_color = vec4(0.835294, 0.258824, 0.149020, 0.60);
+      vec4 fill_color = vec4(0.854902, 0.419608, 0.403922, 0.60);
       vec4 border_color = vec4(0.0, 0.0, 0.0, 0.92);
       vec4 color = mix(fill_color, border_color, border_mix);
       gl_FragColor = vec4(color.rgb, color.a * outer_alpha);
@@ -384,7 +387,6 @@ export default function Home() {
         paint(renderedPoints);
       };
       const findPlaceAt = (point: Point) => {
-        if (instance.getZoom() < MIN_SELECT_ZOOM) return null;
         let closest: Place | null = null;
         let closestDistance = Number.POSITIVE_INFINITY;
         for (const candidate of renderedPoints) {
@@ -480,7 +482,20 @@ export default function Home() {
   }, [places]);
 
   function changeDataset(event: ChangeEvent<HTMLSelectElement>) {
+    setQuery('');
     setActiveDatasetId(event.target.value);
+  }
+  function downloadShownCsv() {
+    const localizedHeaders = [...new Set(filteredPlaces.flatMap((place) => Object.keys(place).filter((key) => /^name_[a-z]{2,3}(?:_[a-z0-9]+)?$/i.test(key))))].sort();
+    const headers = ['code', 'name', ...localizedHeaders, 'state', 'country', 'latitude', 'longitude', 'population', 'nicknames'];
+    const rows = filteredPlaces.map((place) => headers.map((header) => csvCell(place[header])).join(','));
+    const blob = new Blob(['\uFEFF', headers.join(','), '\r\n', rows.join('\r\n')], { type: 'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    const name = allCountries ? 'all-countries' : (activeDataset?.country ?? 'places').toLocaleLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    anchor.href = url; anchor.download = `${name}-shown.csv`;
+    document.body.appendChild(anchor); anchor.click(); anchor.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 0);
   }
   function locate(place: Place) {
     if (!hasCoordinates(place)) return;
@@ -539,7 +554,7 @@ export default function Home() {
           {(allCountries || activeDataset) && <footer><span>{allCountries ? 'Multiple data sources' : `Source: ${activeDataset?.source}`}</span></footer>}
         </aside>
         {tableOpen && <section className="table-panel" aria-label={`${countryTitle} place table`}>
-          <header><div><p>{allCountries ? years : releaseLabel}</p><h2>{countryTitle}</h2></div><div className="table-header-actions">{allCountries ? <details className="download-menu"><summary>Download CSV ↓</summary><div>{datasets.map((dataset) => <a key={dataset.id} href={dataset.file} download={`${dataset.country.toLocaleLowerCase()}.csv`}>{dataset.country} · {dataset.sourceShort} · {dataset.year} {dataset.releaseType}</a>)}</div></details> : activeDataset && <a className="download-link" href={activeDataset.file} download={`${activeDataset.country.toLocaleLowerCase()}.csv`}>Download CSV ↓</a>}<button onClick={closeTable} aria-label="Close place table">×</button></div></header>
+          <header><div><p>{allCountries ? years : releaseLabel}</p><h2>{countryTitle}</h2></div><div className="table-header-actions"><button className="download-link" onClick={downloadShownCsv} disabled={filteredPlaces.length === 0}>Export shown CSV ↓</button><button className="table-close" onClick={closeTable} aria-label="Close place table">×</button></div></header>
           <div className="table-columns" role="row"><span>Place</span><span>{subdivisionHeading}</span><span>Population</span></div>
           <div className="table-scroll" ref={tableScroll} onScroll={handleTableScroll} role="table" aria-rowcount={tablePlaces.length}>
             <div className="table-spacer" style={{ height: tablePlaces.length * TABLE_ROW_HEIGHT }}>

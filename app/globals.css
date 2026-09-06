@@ -162,15 +162,11 @@ button, select { cursor: pointer; }
 .table-panel > header { display: flex; align-items: flex-start; justify-content: space-between; padding: 20px 20px 15px; border-bottom: 1px solid var(--ink); }
 .table-panel > header p { margin: 0 0 4px; color: var(--coral); font-size: 9px; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
 .table-panel > header h2 { margin: 0; font-size: 26px; letter-spacing: -.025em; }
-.table-panel > header button { border: 0; background: transparent; color: #555; font-size: 23px; line-height: 1; }
+.table-panel > header .table-close { border: 0; background: transparent; color: #555; font-size: 23px; line-height: 1; }
 .table-header-actions { display: flex; align-items: center; gap: 8px; }
-.download-link, .download-menu summary { display: block; padding: 7px 9px; border: 1px solid var(--ink); border-radius: 0; background: var(--panel); color: var(--blue); font-size: 9px; font-weight: 800; list-style: none; text-decoration: none; white-space: nowrap; cursor: pointer; }
-.download-link:hover, .download-menu summary:hover { background: #efeee8; }
-.download-menu { position: relative; }
-.download-menu summary::-webkit-details-marker { display: none; }
-.download-menu > div { position: absolute; z-index: 5; top: calc(100% + 5px); right: 0; min-width: 210px; padding: 4px; border: 1px solid var(--ink); background: var(--panel); box-shadow: 3px 3px 0 rgba(23, 23, 23, .16); }
-.download-menu > div a { display: block; padding: 8px; color: var(--ink); font-size: 10px; text-decoration: none; white-space: nowrap; }
-.download-menu > div a:hover { background: #e8e7e0; color: var(--blue); }
+.download-link { display: block; padding: 7px 9px; border: 1px solid var(--ink); border-radius: 0; background: var(--panel); color: var(--blue); font-size: 9px; font-weight: 800; text-decoration: none; white-space: nowrap; cursor: pointer; }
+.download-link:hover { background: #efeee8; }
+.download-link:disabled { color: #888; cursor: default; }
 
 .table-columns, .place-row { display: grid; grid-template-columns: minmax(170px, 1.45fr) minmax(110px, 1fr) minmax(85px, .7fr); align-items: center; column-gap: 14px; }
 .table-columns { padding: 8px 20px; border-bottom: 1px solid var(--ink); background: #e8e7e0; color: #555; font-size: 9px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
@@ -193,7 +189,7 @@ button, select { cursor: pointer; }
 .sidebar, .table-panel { border-radius: 5px; }
 .dataset-picker select, .search-wrap, .results, .stats-grid, .table-button { border-radius: 4px; }
 .stats-grid { overflow: hidden; }
-.download-link, .download-menu summary, .download-menu > div, .error-message { border-radius: 3px; }
+.download-link, .error-message { border-radius: 3px; }
 .leaflet-control-zoom { overflow: hidden; border-radius: 4px !important; }
 
 @media (max-width: 900px) {
