@@ -22,13 +22,13 @@
     "file": "data/india.csv"
   },
   {
-    "id": "brazil-ibge-2022",
-    "country": "Brazil",
+    "id": "argentina-indec-2022",
+    "country": "Argentina",
     "year": 2022,
     "releaseType": "census",
-    "source": "IBGE",
-    "sourceShort": "IBGE",
-    "subdivisionLabel": "States",
-    "file": "data/brazil.csv"
+    "source": "INDEC",
+    "sourceShort": "INDEC",
+    "subdivisionLabel": "Provinces",
+    "file": "data/argentina.csv"
   }
 ]
