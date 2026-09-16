@@ -6,7 +6,7 @@
     "releaseType": "census",
     "source": "INEGI",
     "sourceShort": "INEGI",
-    "subdivisionLabel": "States",
+    "subdivisionLabel": "State",
     "performanceNote": "may run slowly",
     "file": "data/mexico.csv"
   },
@@ -28,7 +28,17 @@
     "releaseType": "census",
     "source": "INDEC",
     "sourceShort": "INDEC",
-    "subdivisionLabel": "Provinces",
+    "subdivisionLabel": "Province",
     "file": "data/argentina.csv"
+  },
+  {
+    "id": "spain-ine-2025",
+    "country": "Spain",
+    "year": 2025,
+    "releaseType": "estimates",
+    "source": "INE",
+    "sourceShort": "INE",
+    "subdivisionLabel": "Autonomous community",
+    "file": "data/spain.csv"
   }
 ]

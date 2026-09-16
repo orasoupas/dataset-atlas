@@ -85,7 +85,6 @@ button, select { cursor: pointer; }
   border: 1px solid var(--ink);
   border-radius: 0;
   background: var(--panel);
-  box-shadow: 5px 5px 0 rgba(23, 23, 23, .16);
 }
 .eyebrow { margin: 0 0 9px; color: var(--coral); font-size: 10px; font-weight: 800; letter-spacing: .11em; line-height: 1; }
 .sidebar h1 { max-width: 300px; margin: 0 0 24px; font-size: 38px; font-weight: 700; letter-spacing: -.035em; line-height: 1; }
@@ -161,7 +160,6 @@ button, select { cursor: pointer; }
   border: 1px solid var(--ink);
   border-radius: 0;
   background: var(--panel);
-  box-shadow: 5px 5px 0 rgba(23, 23, 23, .16);
 }
 .table-panel > header { display: flex; align-items: flex-start; justify-content: space-between; padding: 20px 20px 15px; border-bottom: 1px solid var(--ink); }
 .table-panel > header p { margin: 0 0 4px; color: var(--coral); font-size: 9px; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }

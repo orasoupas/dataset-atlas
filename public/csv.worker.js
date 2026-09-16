@@ -21,9 +21,9 @@ const loadDataset = (dataset) => new Promise((resolve, reject) => {
     skipEmptyLines: 'greedy',
     step: ({ data }) => {
       const place = {
-        code: String(data.code ?? ''),
+        code: String(data.code ?? data.entity_ine_code ?? ''),
         name: String(data.name ?? ''),
-        state: String(data.state ?? ''),
+        state: String(data.state ?? data.subdivision ?? ''),
         country: String(data.country ?? dataset.country),
         latitude: coordinate(data.latitude),
         longitude: coordinate(data.longitude),
